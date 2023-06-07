@@ -11,7 +11,7 @@ if ($arResult["isFormErrors"] == "Y"):?><?=$arResult["FORM_ERRORS_TEXT"];?><?end
     <form class="contact-form__form" action="/" method="POST">
         <div class="contact-form__form-inputs">
     <?php foreach ($arResult["QUESTIONS"] as $FIELD_SID => $arQuestion): ?>
-        <?php if($arQuestion['STRUCTURE'][0]['FIELD_TYPE'] != "textarea") { ?>
+        <?php if($arQuestion['STRUCTURE'][0]['FIELD_TYPE'] == "text") { ?>
         <div class="input contact-form__input"><label class="input__label" for="medicine_name">
             <div class="input__label-text"><?= $arQuestion["CAPTION"]; ?></div>
             <input class="input__input" type="text" id="medicine_name" name="medicine_name" value=""
@@ -19,7 +19,7 @@ if ($arResult["isFormErrors"] == "Y"):?><?=$arResult["FORM_ERRORS_TEXT"];?><?end
             <div class="input__notification">Поле должно содержать не менее 3-х символов</div>
             </label></div>
             <?php
-        } else { ?>
+        } elseif ($arQuestion['STRUCTURE'][0]['FIELD_TYPE'] == "textarea") { ?>
            </div>
             <div class="contact-form__form-message">
             <div class="input"><label class="input__label" for="medicine_message">
@@ -29,7 +29,15 @@ if ($arResult["isFormErrors"] == "Y"):?><?=$arResult["FORM_ERRORS_TEXT"];?><?end
                 <div class="input__notification"></div>
             </label></div>
         </div>
-    <?php } endforeach;?>
+    <?php }
+        else { ?>
+            <div class="input contact-form__input"><label class="input__label" for="medicine_email">
+                <div class="input__label-text"><?php $arQuestion["CAPTION"] ?></div>
+                <input class="input__input" type="email" id="medicine_email" name="medicine_email" value=""
+                       required="">
+                <div class="input__notification">Неверный формат почты</div>
+            </label></div>
+        <?php } endforeach;?>
         <div class="contact-form__bottom">
             <div class="contact-form__bottom-policy">Нажимая &laquo;Отправить&raquo;, Вы&nbsp;подтверждаете, что
                 ознакомлены, полностью согласны и&nbsp;принимаете условия &laquo;Согласия на&nbsp;обработку персональных
@@ -41,4 +49,4 @@ if ($arResult["isFormErrors"] == "Y"):?><?=$arResult["FORM_ERRORS_TEXT"];?><?end
             </button>
         </div>
     </form>
-</div>
+</div
