@@ -32,7 +32,7 @@ if ($arResult["isFormErrors"] == "Y"):?><?=$arResult["FORM_ERRORS_TEXT"];?><?end
     <?php }
         else { ?>
             <div class="input contact-form__input"><label class="input__label" for="medicine_email">
-                <div class="input__label-text"><?php $arQuestion["CAPTION"] ?></div>
+                <div class="input__label-text"><?= $arQuestion["CAPTION"] ?></div>
                 <input class="input__input" type="email" id="medicine_email" name="medicine_email" value=""
                        required="">
                 <div class="input__notification">Неверный формат почты</div>
